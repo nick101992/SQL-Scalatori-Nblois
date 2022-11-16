@@ -63,14 +63,20 @@ le tuple relative allo stesso continente devono essere ordinate
 per anno.*/
 
     /*Soluzione1*/
-    SELECT Scalata.nazione, Scalata.anno, COUNT(*)
-    FROM Scalata
-    GROUP BY Scalata.nazione, Scalata.anno
+   SELECT Scalata.nazione, Scalata.anno, COUNT(*)
+    FROM Scalata JOIN Nazione ON Nazione.nome = Scalata.nazione
+    GROUP BY Scalata.nazione, Scalata.anno, Nazione.continente
     HAVING COUNT(*) > 1
+    ORDER BY Nazione.continente
 
 /* Query 8 - Per ogni nazione N, calcolare il numero medio di
 scalate effettuate all’anno in N da scalatori nati in
 nazioni diverse da N.*/
+
+  SELECT Scalata.nazione, Scalata.anno, COUNT(*)
+    FROM Scalata JOIN Scalatore ON Scalatore.cf = Scalata.scalatore
+    WHERE Scalatore.nazionenascita != Scalata.nazione
+    GROUP BY Scalata.nazione, Scalata.anno
 
 /* Query 9 - Calcolare gli scalatori tali che tutte le scalate che
 hanno effettuato nella nazione di nascita le hanno
