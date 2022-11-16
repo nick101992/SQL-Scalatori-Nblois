@@ -62,6 +62,12 @@ stesso continente devono essere mostrati in tuple contigue, e
 le tuple relative allo stesso continente devono essere ordinate
 per anno.*/
 
+    /*Soluzione1*/
+    SELECT Scalata.nazione, Scalata.anno, COUNT(*)
+    FROM Scalata
+    GROUP BY Scalata.nazione, Scalata.anno
+    HAVING COUNT(*) > 1
+
 /* Query 8 - Per ogni nazione N, calcolare il numero medio di
 scalate effettuate all’anno in N da scalatori nati in
 nazioni diverse da N.*/
