@@ -38,10 +38,10 @@ GROUP BY Scalata.nazione
 /* Query 5 - Per ogni continente, calcolare il numero di scalate effettuate
 da scalatori nati in una nazione di quel continente.*/
 
-SELECT Nazione.continente, COUNT(DISTINCT Scalata.scalatore)
+SELECT Nazione.continente, COUNT(Scalata.scalatore)
 FROM Scalata JOIN Nazione ON Nazione.nome = Scalata.nazione
              JOIN Scalatore ON Scalatore.cf = Scalata.scalatore
-             JOIN Nazione AS Nazione2 ON Nazione2.nome = Scalata.nazione
+             JOIN Nazione AS Nazione2 ON Nazione2.nome = Scalatore.nazionenascita
 WHERE Nazione.continente = Nazione2.continente
 GROUP BY Nazione.continente 
 
