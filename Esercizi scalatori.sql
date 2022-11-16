@@ -10,10 +10,11 @@ tutti i continenti in cui ha effettuato una scalata,
 ordinando il risultato per codice fiscale e, a parità di
 codice fiscale, per il nome del continente.*/
 
-SELECT Scalata.scalatore, Scalata.nazione
+SELECT Scalata.scalatore, Nazione.continente
 FROM Scalatore JOIN Scalata ON Scalatore.cf = Scalata.scalatore
+               JOIN Nazione ON Nazione.nome = Scalata.nazione
 WHERE Scalatore.annonascita < 1980
-ORDER BY Scalata.scalatore, Scalata.nazione
+ORDER BY Scalatore.cf, Nazione.continente
 
 
 /* Query 3 - Calcolare le nazioni (mostrando, per ciascuna, anche il
@@ -63,7 +64,7 @@ le tuple relative allo stesso continente devono essere ordinate
 per anno.*/
 
     /*Soluzione1*/
-   SELECT Scalata.nazione, Scalata.anno, COUNT(*)
+    SELECT Scalata.nazione, Scalata.anno, COUNT(*)
     FROM Scalata JOIN Nazione ON Nazione.nome = Scalata.nazione
     GROUP BY Scalata.nazione, Scalata.anno, Nazione.continente
     HAVING COUNT(*) > 1
@@ -73,7 +74,7 @@ per anno.*/
 scalate effettuate all’anno in N da scalatori nati in
 nazioni diverse da N.*/
 
-  SELECT Scalata.nazione, Scalata.anno, COUNT(*)
+SELECT Scalata.nazione, Scalata.anno, COUNT(*)
     FROM Scalata JOIN Scalatore ON Scalatore.cf = Scalata.scalatore
     WHERE Scalatore.nazionenascita != Scalata.nazione
     GROUP BY Scalata.nazione, Scalata.anno
