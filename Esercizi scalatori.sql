@@ -50,6 +50,10 @@ dall’America, e, solo se egli ha effettuato almeno una scalata,
 affiancare queste informazioni alle nazioni in cui ha effettuato
 scalate.*/
 
+SELECT Scalatore.cf, Scalatore.nazionenascita, Nazione.continente, Scalata.nazione
+FROM Scalatore LEFT JOIN Scalata ON Scalatore.cf = Scalata.scalatore
+               LEFT JOIN Nazione ON Nazione.nome = Scalata.nazione
+
 /* Query 7 - Per ogni nazione e per ogni anno, calcolare il numero di
 scalate effettuate in quella nazione e in quell’anno, ma solo se
 tale numero è maggiore di 1. Nel risultato le nazioni dello
