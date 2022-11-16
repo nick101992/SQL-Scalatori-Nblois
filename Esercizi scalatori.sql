@@ -82,3 +82,9 @@ SELECT Scalata.nazione, Scalata.anno, COUNT(*)
 /* Query 9 - Calcolare gli scalatori tali che tutte le scalate che
 hanno effettuato nella nazione di nascita le hanno
 effettuate quando erano minorenni.*/
+
+SELECT Scalatore.cf, Scalatore.annonascita, Scalatore.nazionenascita, Scalata.nazione as nazione_scalata, Scalata.anno as anno_scalata
+FROM Scalatore JOIN Scalata ON Scalatore.cf = Scalata.scalatore
+WHERE nazionenascita IN (SELECT nazione from scalata) 
+AND Scalata.nazione = Scalatore.nazionenascita
+AND ((Scalata.anno - Scalatore.annonascita) < 18)
