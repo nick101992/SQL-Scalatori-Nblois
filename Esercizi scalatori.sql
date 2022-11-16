@@ -2,8 +2,8 @@
 coppie (A,B) tali che A
 è uno scalatore e B è un continente in cui A ha effettuato una scalata*/
 
-SELECT DISTINCT scalatore, nazione
-FROM Scalata
+SELECT DISTINCT Scalata.scalatore, Nazione.continente
+FROM Scalata JOIN Nazione ON Nazione.nome = Scalata.nazione
 
 /* Query 2 - Per ogni scalatore nato prima del 1980, calcolare
 tutti i continenti in cui ha effettuato una scalata,
