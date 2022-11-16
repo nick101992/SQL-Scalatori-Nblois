@@ -37,6 +37,13 @@ GROUP BY Scalata.nazione
 /* Query 5 - Per ogni continente, calcolare il numero di scalate effettuate
 da scalatori nati in una nazione di quel continente.*/
 
+SELECT Nazione.continente, COUNT(DISTINCT Scalata.scalatore)
+FROM Scalata JOIN Nazione ON Nazione.nome = Scalata.nazione
+             JOIN Scalatore ON Scalatore.cf = Scalata.scalatore
+             JOIN Nazione AS Nazione2 ON Nazione2.nome = Scalata.nazione
+WHERE Nazione.continente = Nazione2.continente
+GROUP BY Nazione.continente 
+
 /* Query 6 - Calcolare codice fiscale, nazione di nascita, continente di
 nascita di ogni scalatore nato in un continente diverso
 dall’America, e, solo se egli ha effettuato almeno una scalata,
