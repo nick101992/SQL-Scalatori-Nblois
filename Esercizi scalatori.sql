@@ -20,6 +20,13 @@ ORDER BY Scalata.scalatore, Scalata.nazione
 continente) nelle quali è stata effettuata almeno una scalata
 da uno scalatore minorenne.*/
 
+SELECT Scalata.Nazione, Nazione.continente
+FROM Scalata JOIN Nazione ON Nazione.nome = Scalata.nazione
+             JOIN Scalatore ON Scalatore.cf = Scalata.scalatore
+WHERE ((Scalata.anno - Scalatore.annonascita) < 18)
+
+
+
 /* Query 4 - Per ogni nazione, calcolare il numero di scalate effettuate da
 scalatori nati in quella nazione.*/
 
