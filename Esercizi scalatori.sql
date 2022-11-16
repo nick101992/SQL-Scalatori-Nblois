@@ -10,7 +10,7 @@ tutti i continenti in cui ha effettuato una scalata,
 ordinando il risultato per codice fiscale e, a parità di
 codice fiscale, per il nome del continente.*/
 
-SELECT Scalata.scalatore, Nazione.continente
+SELECT DISTINCT Scalatore.cf, Nazione.continente
 FROM Scalatore JOIN Scalata ON Scalatore.cf = Scalata.scalatore
                JOIN Nazione ON Nazione.nome = Scalata.nazione
 WHERE Scalatore.annonascita < 1980
