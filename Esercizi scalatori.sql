@@ -26,9 +26,13 @@ FROM Scalata JOIN Nazione ON Nazione.nome = Scalata.nazione
 WHERE ((Scalata.anno - Scalatore.annonascita) < 18)
 
 
-
 /* Query 4 - Per ogni nazione, calcolare il numero di scalate effettuate da
 scalatori nati in quella nazione.*/
+
+SELECT Scalata.nazione, COUNT(Scalata.scalatore) AS Numero_scalate_stessa_nazione
+FROM Scalatore JOIN Scalata ON Scalatore.cf = Scalata.scalatore
+WHERE Scalata.nazione = Scalatore.nazionenascita
+GROUP BY Scalata.nazione
 
 /* Query 5 - Per ogni continente, calcolare il numero di scalate effettuate
 da scalatori nati in una nazione di quel continente.*/
