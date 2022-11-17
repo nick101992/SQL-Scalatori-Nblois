@@ -83,8 +83,8 @@ SELECT Scalata.nazione, Scalata.anno, COUNT(*)
 hanno effettuato nella nazione di nascita le hanno
 effettuate quando erano minorenni.*/
 
-SELECT Scalatore.cf, Scalatore.annonascita, Scalatore.nazionenascita, Scalata.nazione as nazione_scalata, Scalata.anno as anno_scalata
-FROM Scalatore JOIN Scalata ON Scalatore.cf = Scalata.scalatore
+SELECT S.cf, S.annonascita, S.nazionenascita, SC.nazione as nazione_scalata, SC.anno as anno_scalata
+FROM Scalatore S JOIN Scalata SC ON S.cf = SC.scalatore
 WHERE nazionenascita IN (SELECT nazione from scalata) 
-AND Scalata.nazione = Scalatore.nazionenascita
-AND ((Scalata.anno - Scalatore.annonascita) < 18)
+AND SC.nazione = S.nazionenascita
+AND ((SC.anno - S.annonascita) < 18)
